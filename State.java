@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class State {
 	private List<Transition> transitions;
@@ -16,6 +15,36 @@ public class State {
 
 	public String getName() {
 		return name;
+	}
+
+	public List<Transition> getTransitions() {
+		return transitions;
+	}
+
+/*	public static Set<State> EpsilionClose(State state){
+		Set<State> states = new HashSet<>();
+		states.add(state);
+		List<Transition> transitions = state.getTransitions();
+		for (Transition transition : transitions) {
+			if(transition.isEp()){
+				states.addAll(EpsilionClose(transition.getNext()));
+			}
+		}
+
+		return states;
+
+	}*/
+
+	public static void EpsilionClose(State state, Set<State> states){
+//		Set<State> states = new HashSet<>();
+		states.add(state);
+		List<Transition> transitions = state.getTransitions();
+		for (Transition transition : transitions) {
+			if(transition.isEp() && !states.contains(transition.getNext())){
+				EpsilionClose(transition.getNext(),states);
+			}
+		}
+
 	}
 
 	@Override

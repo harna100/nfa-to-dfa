@@ -1,5 +1,3 @@
-import com.google.gson.Gson;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -91,10 +89,5 @@ public class FileParser {
 				", initialState=" + initialState +
 				", fileName='" + fileName + '\'' +
 				'}';
-	}
-
-	public String toJSONString(){
-		Gson gson = new Gson();
-		return gson.toJson(this);
 	}
 }

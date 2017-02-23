@@ -8,6 +8,14 @@ public class Transition {
 		this.next = next;
 	}
 
+	public boolean isEp(){
+		return operation.equals("EPS");
+	}
+
+	public State getNext() {
+		return next;
+	}
+
 	@Override
 	public String toString() {
 		return "Transition{" +
