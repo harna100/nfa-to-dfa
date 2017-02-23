@@ -21,22 +21,8 @@ public class State {
 		return transitions;
 	}
 
-/*	public static Set<State> EpsilionClose(State state){
-		Set<State> states = new HashSet<>();
-		states.add(state);
-		List<Transition> transitions = state.getTransitions();
-		for (Transition transition : transitions) {
-			if(transition.isEp()){
-				states.addAll(EpsilionClose(transition.getNext()));
-			}
-		}
-
-		return states;
-
-	}*/
 
 	public static void EpsilionClose(State state, Set<State> states){
-//		Set<State> states = new HashSet<>();
 		states.add(state);
 		List<Transition> transitions = state.getTransitions();
 		for (Transition transition : transitions) {

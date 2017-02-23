@@ -13,7 +13,6 @@ public class Main {
 	}
 
 	public static Set<State> convertInitialStates(State initial){
-
 		Set<State> newInitials = new HashSet<>();
 		State.EpsilionClose(initial, newInitials);
 		return newInitials;
