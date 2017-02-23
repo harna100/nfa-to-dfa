@@ -4,9 +4,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-/**
- * Created by Paul on 2/22/2017.
- */
 public class FileParser {
 	private Map<String,State> states;
 	private Map<String,State> acceptStates;

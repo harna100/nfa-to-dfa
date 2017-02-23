@@ -1,0 +1,5 @@
+todos
+either
+	implement method to change single states of NFA to Sets (2 -> {2})
+	or automatically do it at the start when parsing file
+		means that states and acceptStates must become Map<String, Set<State>> instead

@@ -7,9 +7,8 @@ public class Main {
 		FileParser fp = new FileParser(args[0]);
 		fp.parseFile();
 		System.out.println(fp.toString());
-		Set newInitials = convertInitialStates(fp.getInitialState());
+		Set<State> newInitials = convertInitialStates(fp.getInitialState());
 		System.out.println("newInitials = " + newInitials);
-
 	}
 
 	public static Set<State> convertInitialStates(State initial){
