@@ -84,11 +84,16 @@ public class State {
 		return name.hashCode();
 	}
 
-	@Override
+	/*@Override
 	public String toString() {
 		return "State{" +
 				"transitions=" + transitions +
 				", name='" + name + '\'' +
 				'}';
+	}*/
+
+	@Override
+	public String toString(){
+		return name;
 	}
 }

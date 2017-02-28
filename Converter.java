@@ -1,7 +1,4 @@
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class Converter {
 	private Set<String> alphabet;
@@ -13,7 +10,7 @@ public class Converter {
 	private Set<State> newInitialStates;
 	private Set<Set<State>> newStates;
 	private Set<Set<State>> newAcceptStates;
-
+	private Map<Set<State>,Map<String,Set<State>>> transitions;
 
 
 	public Converter(FileParser fp){
@@ -23,6 +20,7 @@ public class Converter {
 		originalInitialState = fp.getInitialState();
 		usedStates = new HashSet<>();
 		newAcceptStates = new HashSet<>();
+		transitions = new HashMap<>();
 	}
 
 	public void convert(){
@@ -46,6 +44,9 @@ public class Converter {
 					nextStates.addAll(toAdd);
 				}
 				newStates.add(nextStates);
+				Map<String, Set<State>> temp = transitions.getOrDefault(curr, new HashMap<>());
+				temp.put(s, nextStates);
+				transitions.put(curr, temp);
 			}
 			usedStates.add(curr);
 			newStates.remove(curr);
@@ -87,6 +88,10 @@ public class Converter {
 
 	public Set<Set<State>> getNewAcceptStates() {
 		return newAcceptStates;
+	}
+
+	public Map<Set<State>, Map<String, Set<State>>> getTransitions() {
+		return transitions;
 	}
 
 	@Override
