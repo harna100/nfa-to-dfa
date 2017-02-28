@@ -49,9 +49,6 @@ public class FileParser {
 				String stateString = currLine.substring(0,commaIDX).trim();
 				String operationString = currLine.substring(commaIDX+1, equalIDX).trim();
 				String endStateString = currLine.substring(equalIDX+1).trim();
-//				System.out.println("stateString = '" + stateString + "'");
-//				System.out.println("operationString = '" + operationString + "'");
-//				System.out.println("endStateString = '" + endStateString + "'");
 				states.get(stateString).addTransition(operationString, states.get(endStateString));
 			}
 

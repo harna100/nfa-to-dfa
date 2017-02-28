@@ -44,11 +44,12 @@ public class State {
 				toReturn.addAll(toAdd.checkForEpsilons());
 			}
 			if(transition.isEp()){
-//				toReturn.add(transition.getNext());
 				Set<State> toAdd = transition.getNext().transition(input);
-				if(toAdd.isEmpty()){
-					toAdd.add(transition.getNext());
-				}
+				//Commented out because it follows the one from class like this
+				//Uncomment if the one from class was messed up
+//				if(toAdd.isEmpty()){
+//					toAdd.add(transition.getNext());
+//				}
 				toReturn.addAll(toAdd);
 			}
 		}
@@ -78,19 +79,10 @@ public class State {
 
 	}
 
-
 	@Override
 	public int hashCode() {
 		return name.hashCode();
 	}
-
-	/*@Override
-	public String toString() {
-		return "State{" +
-				"transitions=" + transitions +
-				", name='" + name + '\'' +
-				'}';
-	}*/
 
 	@Override
 	public String toString(){

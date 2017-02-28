@@ -50,9 +50,7 @@ public class OutputWriter {
 
 	private void writeStates() {
 		for (Set<State> stateSet : states) {
-//			printWriter.print('{');
 			printWriter.print(concatSet(stateSet));
-//			printWriter.print('}');
 			printWriter.print('\t');
 		}
 	}
@@ -62,16 +60,12 @@ public class OutputWriter {
 	}
 
 	private void writeInitialState() {
-//		printWriter.print('{');
 		printWriter.print(concatSet(initialStates));
-//		printWriter.print('}');
 	}
 
 	private void writeAcceptStates() {
 		for (Set<State> stateSet : acceptStates) {
-//			printWriter.print('{');
 			printWriter.print(concatSet(stateSet));
-//			printWriter.print('}');
 			printWriter.print('\t');
 		}
 	}
