@@ -23,7 +23,7 @@ public class FileParser {
 			FileReader fr = new FileReader(fileName);
 			BufferedReader br = new BufferedReader(fr);
 
-			String[] _states = br.readLine().trim().split("\t");
+			String[] _states = br.readLine().trim().replaceAll("\\{","").replaceAll("}", "").split("\t");
 			for (int i = 0; i < _states.length; ++i) {
 				String state = _states[i];
 				states.put(state, new State(state));
@@ -31,18 +31,20 @@ public class FileParser {
 
 			Collections.addAll(alphabet, br.readLine().trim().split("\t"));
 
-			initialState = states.get(br.readLine().trim());
+			initialState = states.get(br.readLine().trim().replaceAll("\\{","").replaceAll("}", ""));
 
 			String[] _acceptStates = br.readLine().trim().split("\t");
 			for (int i = 0; i < _acceptStates.length; ++i) {
-				String state = _acceptStates[i];
+				String state = _acceptStates[i].replaceAll("\\{","").replaceAll("}", "");
 				acceptStates.put(state, states.get(state));
 			}
 
 			String currLine;
 			while ((currLine = br.readLine()) != null){
+				currLine = currLine.replaceAll("\\{","").replaceAll("}", "");
 				int commaIDX = currLine.indexOf(",");
 				int equalIDX = currLine.indexOf("=");
+
 
 				String stateString = currLine.substring(0,commaIDX).trim();
 				String operationString = currLine.substring(commaIDX+1, equalIDX).trim();

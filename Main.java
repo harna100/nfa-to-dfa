@@ -1,20 +1,15 @@
-import java.util.*;
-
 public class Main {
 
 	public static void main(String[] args) {
-		System.out.println("Hello World.");
 		FileParser fp = new FileParser(args[0]);
 		fp.parseFile();
-		System.out.println(fp.toString());
-		Set<State> newInitials = convertInitialStates(fp.getInitialState());
-		System.out.println("newInitials = " + newInitials);
-	}
 
-	public static Set<State> convertInitialStates(State initial){
-		Set<State> newInitials = new HashSet<>();
-		State.EpsilionClose(initial, newInitials);
-		return newInitials;
-	}
+		Converter converter = new Converter(fp);
+		converter.convert();
+		System.out.println("converter = " + converter);
+//		String newFileName = args[0].substring(0,args[0].lastIndexOf(".")) + ".DFA";
+//		OutputWriter outputWriter = new OutputWriter(converter, newFileName);
+//		outputWriter.writeFile();
 
+	}
 }

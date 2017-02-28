@@ -22,15 +22,49 @@ public class State {
 	}
 
 
-	public static void EpsilionClose(State state, Set<State> states){
+	public static void EpsilonClose(State state, Set<State> states){
 		states.add(state);
 		List<Transition> transitions = state.getTransitions();
 		for (Transition transition : transitions) {
 			if(transition.isEp() && !states.contains(transition.getNext())){
-				EpsilionClose(transition.getNext(),states);
+				EpsilonClose(transition.getNext(),states);
 			}
 		}
 
+	}
+
+	public Set<State> transition(String input){
+		Set<State> toReturn = new HashSet<>();
+
+		for (Transition transition : transitions) {
+			if(transition.getOperation().equals(input)){
+				State toAdd = transition.getNext();
+				toReturn.add(toAdd);
+				// check for eps
+				toReturn.addAll(toAdd.checkForEpsilons());
+			}
+			if(transition.isEp()){
+//				toReturn.add(transition.getNext());
+				Set<State> toAdd = transition.getNext().transition(input);
+				if(toAdd.isEmpty()){
+					toAdd.add(transition.getNext());
+				}
+				toReturn.addAll(toAdd);
+			}
+		}
+
+		return toReturn;
+	}
+
+	private Set<State> checkForEpsilons(){
+		Set<State> toReturn = new HashSet<>();
+		for (Transition transition : transitions) {
+			if(transition.isEp()){
+				toReturn.add(transition.getNext());
+			}
+		}
+
+		return toReturn;
 	}
 
 	@Override
@@ -43,6 +77,7 @@ public class State {
 		return name.equals(state.name);
 
 	}
+
 
 	@Override
 	public int hashCode() {

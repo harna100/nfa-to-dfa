@@ -1,4 +1,3 @@
-
 public class Transition {
 	private String operation;
 	private State next;
@@ -14,6 +13,10 @@ public class Transition {
 
 	public State getNext() {
 		return next;
+	}
+
+	public String getOperation() {
+		return operation;
 	}
 
 	@Override
